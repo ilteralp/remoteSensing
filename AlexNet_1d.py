@@ -24,8 +24,8 @@ from sklearn.metrics import cohen_kappa_score
 import numpy as np
 
 # Load data
-train_dataset=np.loadtxt("C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\train_spectral.arff",delimiter=",")
-test_dataset=np.loadtxt("C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\test_spectral.arff",delimiter=",")
+train_dataset=np.loadtxt("C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\norm_train_spectral.arff",delimiter=",")
+test_dataset=np.loadtxt("C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\norm_test_spectral.arff",delimiter=",")
 
 # Split into input (X) and output (Y) variables
 train_X=train_dataset[:,0:144]
@@ -130,4 +130,4 @@ _, accuracy = spectral_model.evaluate(test_X, cat_test_Y, batch_size=batch_size,
 pred = spectral_model.predict(test_X, batch_size=batch_size, verbose=verbose)
 y_classes = pred.argmax(axis=-1)
 kappa = cohen_kappa_score(y_classes, test_Y)
-print("kappa: " + kappa)
+print("kappa: " + str(kappa))
