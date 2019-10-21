@@ -46,6 +46,28 @@ NUM_SPECT_TEST_SAMPLES = test_spect_X.shape[0] # 12197 for both
 NUM_SPECT_FEATURES = train_spect_X.shape[1]    # 144 or 145
 NUM_CLASSES = 15
 
+# ================================================================
+
+# Spatial data
+TRAIN_SPAT_PATH = "C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\train_spatial.arff"
+TEST_SPAT_PATH = "C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\test_spatial.arff"
+SPAT_LABEL_INDEX = 145
+
+# Load data
+train_spat_dataset=np.loadtxt(TRAIN_SPAT_PATH,delimiter=",")
+test_spat_dataset=np.loadtxt(TEST_SPAT_PATH,delimiter=",")
+
+# Split into input (X) and output (Y) variables
+train_spat_X=train_spat_dataset[:,0:SPAT_LABEL_INDEX]
+test_spat_X=test_spat_dataset[:,0:SPAT_LABEL_INDEX]
+train_spat_Y=train_spat_dataset[:,SPAT_LABEL_INDEX]
+test_spat_Y=test_spat_dataset[:,SPAT_LABEL_INDEX]
+
+# Get number of examples
+NUM_SPAT_TR_SAMPLES = train_spat_X.shape[0]  # 2382 or 2832
+NUM_SPAT_TEST_SAMPLES = test_spat_X.shape[0] # 12197 for both
+NUM_SPAT_FEATURES = train_spat_X.shape[1]    # 144 or 145
+
 # Shuffle data
 train_spect_X, train_spect_Y = shuffle(train_spect_X, train_spect_Y, random_state=SEED_SPECT_VAL)
 print("spect_y" + str(train_spect_Y))
@@ -73,27 +95,6 @@ print("conv spect weights")
 print(convl1_spect.get_weights())
 spect_out = convl1_spect(spect_input)
 flat1 = Flatten()(spect_out)
-# ================================================================
-
-# Spatial data
-TRAIN_SPAT_PATH = "C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\train_spatial.arff"
-TEST_SPAT_PATH = "C:\\Users\\melike\\AnacondaProjects\\Tunus\\data\\test_spatial.arff"
-SPAT_LABEL_INDEX = 145
-
-# Load data
-train_spat_dataset=np.loadtxt(TRAIN_SPAT_PATH,delimiter=",")
-test_spat_dataset=np.loadtxt(TEST_SPAT_PATH,delimiter=",")
-
-# Split into input (X) and output (Y) variables
-train_spat_X=train_spat_dataset[:,0:SPAT_LABEL_INDEX]
-test_spat_X=test_spat_dataset[:,0:SPAT_LABEL_INDEX]
-train_spat_Y=train_spat_dataset[:,SPAT_LABEL_INDEX]
-test_spat_Y=test_spat_dataset[:,SPAT_LABEL_INDEX]
-
-# Get number of examples
-NUM_SPAT_TR_SAMPLES = train_spat_X.shape[0]  # 2382 or 2832
-NUM_SPAT_TEST_SAMPLES = test_spat_X.shape[0] # 12197 for both
-NUM_SPAT_FEATURES = train_spat_X.shape[1]    # 144 or 145
 
 # Shuffle data
 train_spat_X, train_spat_Y = shuffle(train_spat_X, train_spat_Y, random_state=SEED_SPAT_VAL)
