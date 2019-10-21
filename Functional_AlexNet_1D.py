@@ -45,7 +45,7 @@ NUM_SPECT_TR_SAMPLES = train_spect_X.shape[0]  # 2382 or 2832
 NUM_SPECT_TEST_SAMPLES = test_spect_X.shape[0] # 12197 for both
 NUM_SPECT_FEATURES = train_spect_X.shape[1]    # 144 or 145
 NUM_CLASSES = 15
-"""
+
 # Shuffle data
 train_spect_X, train_spect_Y = shuffle(train_spect_X, train_spect_Y, random_state=SEED_SPECT_VAL)
 print("spect_y" + str(train_spect_Y))
@@ -73,7 +73,6 @@ print("conv spect weights")
 print(convl1_spect.get_weights())
 spect_out = convl1_spect(spect_input)
 flat1 = Flatten()(spect_out)
-"""
 # ================================================================
 
 # Spatial data
@@ -96,12 +95,6 @@ NUM_SPAT_TR_SAMPLES = train_spat_X.shape[0]  # 2382 or 2832
 NUM_SPAT_TEST_SAMPLES = test_spat_X.shape[0] # 12197 for both
 NUM_SPAT_FEATURES = train_spat_X.shape[1]    # 144 or 145
 
-# Calculate diff
-diff = abs(train_spat_Y - train_spect_Y)
-print(diff.shape)
-print(sum(diff))
-
-"""
 # Shuffle data
 train_spat_X, train_spat_Y = shuffle(train_spat_X, train_spat_Y, random_state=SEED_SPAT_VAL)
 print("spat_y " + str(train_spat_Y))
@@ -149,4 +142,3 @@ model.compile(loss=losses.categorical_crossentropy, optimizer='adam', metrics=["
 model.fit([train_spect_X, train_spat_X], [cat_spect_train_Y, cat_spat_train_Y], epochs=EPOCHS, batch_size=BATCH_SIZE, verbose=VERBOSE, shuffle=SHUFFLE)
 #model.fit({'spect_input': train_spect_X, 'spat_input': spat_input}, {'main_output': output}, epochs=EPOCHS, batch_size=BATCH_SIZE, verbose=VERBOSE, shuffle=SHUFFLE)
 #model.fit([train_spect_X, train_spat_X], output, epochs=EPOCHS, batch_size=BATCH_SIZE, verbose=VERBOSE, shuffle=SHUFFLE)
-"""
